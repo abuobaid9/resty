@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './app.scss';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
@@ -17,7 +17,7 @@ function App() {
     if (requestParams.method==='GET'){
       axios.get(requestParams.url)
       .then((d)=> {
-      console.log(d);
+      // console.log(d);
       setdata(d);
       // setrequestParams(requestParams);
       
@@ -26,7 +26,7 @@ function App() {
     if (requestParams.method==='POST'){
       axios.post(requestParams.url, requestParams.body)
       .then((d)=> {
-      console.log(d.data);
+      // console.log(d.data);
       setdata(d.data);
       // setrequestParams(requestParams);
       
@@ -35,7 +35,7 @@ function App() {
     if (requestParams.method==='PUT'){
       axios.put(requestParams.url,)
       .then((d)=> {
-      console.log(d.data);
+      // console.log(d.data);
       setdata(d.data);
       // setrequestParams(requestParams);
       
@@ -44,7 +44,7 @@ function App() {
     if (requestParams.method==='DELETE'){
       axios.delete(requestParams.url)
       .then((d)=> {
-      console.log(d.data);
+      // console.log(d.data);
       setdata(d.data);
       // setrequestParams(requestParams);
       
@@ -53,14 +53,16 @@ function App() {
     setrequestParams(requestParams);
 
   }
-  
+  useEffect(()=>{
+callApi(requestParams);
+  },[requestParams,data])
   
   return (
     <>
-      <React.Fragment>
-        <Header />
-        <div>Request Method: {requestParams.method}</div>
-        <div>URL: {requestParams.url}</div>
+      <React.Fragment >
+        <Header data-testid='header' />
+        <div data-testid='method'>Request Method: {requestParams.method}</div>
+        <div data-testid='url'>URL: {requestParams.url}</div>
         <Form handleApiCall={callApi} />
         <Results data={data} />
         <Footer />

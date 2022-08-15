@@ -23,14 +23,14 @@ const[body,setBody]=useState("");
       <form  onSubmit={handleSubmit}>
         <label >
           <span>URL: </span>
-          <input name='url' type='text' onChange={(e)=>setUrl(e.target.value)}/>
-          <button type="submit">GO!</button>
+          <input name='url'  placeholder='URL...' type='text' onChange={(e)=>setUrl(e.target.value)}/>
+          <button data-testid='go' type="submit">GO!</button>
         </label>
         <label className="methods">
-          <span id="get" onClick={()=>setMethod('GET')}>GET</span>
-          <span id="post"  onClick={()=>setMethod('POST')}>POST</span>
-          <span id="put"  onClick={()=>setMethod('PUT')}>PUT</span>
-          <span id="delete"  onClick={()=>setMethod('DELETE')}>DELETE</span>
+          <span data-testid="get" onClick={()=>setMethod('GET')}>GET</span>
+          <span data-testid="post"  onClick={()=>setMethod('POST')}>POST</span>
+          <span data-testid="put"  onClick={()=>setMethod('PUT')}>PUT</span>
+          <span data-testid="delete"  onClick={()=>setMethod('DELETE')}>DELETE</span>
         </label>
         {method === 'POST' || method === 'PUT' ? <textarea   onChange={(e)=>{setBody(e.target.value)}} placeholder='Write here....' /> : null}
       </form>

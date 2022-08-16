@@ -55,7 +55,7 @@ function App() {
   }
   useEffect(()=>{
 callApi(requestParams);
-  },[requestParams,data])
+  },[requestParams])
   
   return (
     <>
